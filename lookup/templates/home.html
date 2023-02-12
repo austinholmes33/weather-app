@@ -13,13 +13,12 @@
             <div class="card-header">
                 Area: {{ api.0.ReportingArea }}, {{ api.0.StateCode }}
             </div>
-            <div class="card-body">
+            <div class="card-body {{ category_color }}">
             <h5 class="card-title">Current Air Quality: {{ api.0.AQI }}</h5>
             <p class="card-text">{{ api.0.Category.Name }}</p>
 
             {% if api.0.Category.Name == "Good" %}
-                <p>Air quality is satisfactory, and air pollution poses little or no risk.</p>
-            
+                <p>Air quality is satisfactory, and air pollution poses little or no risk.</p>          
             {% elif api.0.Category.Name == "Moderate" %}
                 <p>Air quality is acceptable. However, there may be a risk for some people, particularly those who are unusually sensitive to air pollution.</p>
             {% elif api.0.Category.Name == "Unhealthy for Sensitive Groups" %}
