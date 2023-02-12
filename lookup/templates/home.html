@@ -4,10 +4,44 @@
 
 {% block content %}
 
-Air Quality: {{ api.0.AQI }} <br/>
+{% if api %}
+    {% if api == "Error" %}
+        <p>There was an error. Please try again</p>
+    {% else %}
 
-Area: {{ api.0.ReportingArea }} <br/>
+        <div class="card text-center">
+            <div class="card-header">
+                Area: {{ api.0.ReportingArea }}, {{ api.0.StateCode }}
+            </div>
+            <div class="card-body">
+            <h5 class="card-title">Current Air Quality: {{ api.0.AQI }}</h5>
+            <p class="card-text">{{ api.0.Category.Name }}</p>
 
-Category: {{ api.0.Category.Name }}
+            {% if api.0.Category.Name == "Good" %}
+                <p>Air quality is satisfactory, and air pollution poses little or no risk.</p>
+            
+            {% elif api.0.Category.Name == "Moderate" %}
+                <p>Air quality is acceptable. However, there may be a risk for some people, particularly those who are unusually sensitive to air pollution.</p>
+            {% elif api.0.Category.Name == "Unhealthy for Sensitive Groups" %}
+                <p>Members of sensitive groups may experience health effects. The general public is less likely to be affected.</p>
+            {% elif api.0.Category.Name == "Unhealthy" %}
+                <p>Some members of the general public may experience health effects; members of sensitive groups may experience more serious health effects.</p>
+            {% elif api.0.Category.Name == "Very Unhealthy" %}
+                <p>Health alert: The risk of health effects is increased for everyone.</p>
+            {% elif api.0.Category.Name == "Hazardous" %}
+                <p>Health warning of emergency conditions: everyone is more likely to be affected.</p>
+            {% endif %}
+            </div>
+            <div class="card-footer text-muted">
+                Latitude: {{ api.0.Latitude }} <br/>
+                Longitude: {{ api.0.Longitude }}
+            </div>
+        </div>
+
+
+        
+    
+    {% endif %}
+{% endif %}
 
 {% endblock %}
