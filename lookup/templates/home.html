@@ -3,4 +3,11 @@
 {% block title %}<title>Home</title>{% endblock %}
 
 {% block content %}
+
+Air Quality: {{ api.0.AQI }} <br/>
+
+Area: {{ api.0.ReportingArea }} <br/>
+
+Category: {{ api.0.Category.Name }}
+
 {% endblock %}
