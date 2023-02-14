@@ -4,6 +4,12 @@
 
 {% block content %}
 
+{% if zipcode %}
+
+    {{ zipcode }}
+
+{% endif %}
+
 {% if api %}
     {% if api == "Error" %}
         <p>There was an error. Please try again</p>
