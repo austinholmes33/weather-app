@@ -14,7 +14,8 @@ def home(request):
         except Exception as e:
             api = "Error"
 
-    
+    # I think the list index out of range error is coming from the way these statements are trying to access the info being returned by the api
+    # need to work on re-writing this logic to properly accommodate how the data is being accessed then the error should be fixed
         if api[0]['Category']['Name'] == "Good":
             category_description = "(0-50) Air quality is satisfactory, and air pollution poses little or no risk."       
             category_color = "good"
